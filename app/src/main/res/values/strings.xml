@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherForecast</string>
+    <string name="date_format">EEE d MMM yyyy</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="full_formatted_date">%1$s, %2$s</string>
+    <string name="time_format">h:mm a</string>
+
+    <!--Thursday, January 1, 1970 12:00:00 AM-->
+    <string name="start_date">0000000000</string>
+
+    <!-- City and Country subtitle -->
+    <string name="subtitle">%1$s </string>
+    <string name="search_city_hint">Find your city...</string>
+    <string name="cityID_default_value">5358705</string>
+
+
+    <string name="degrees_celcius">%1$s \u2103</string>
+    <string name="degrees_fahrenheit">%1$s \u2109</string>
+    <string name="temperature_high_low_celcius">%1$s \u2103 | %2$s \u2103</string>
+    <string name="temperature_high_low_fahrenheit">%1$s \u2109 | %2$s \u2109</string>
+
+    <string name="celcius">\u2103</string>
+    <string name="fahrenheit">\u2109</string>
+
+
+    <string name="weather_icon_base_url">http://openweathermap.org/img/w/</string>
+    <string name="weather_icon_base_url_extension">.png</string>
+
+    <!-- Detail weather forecast value and units format -->
+    <string name="weather_forecast_value_units">%1$s %2$s</string>
+
+    <!-- Detail weather forecast labels -->
+    <string name="atmospheric_pressure_label">Atmospheric Pressure</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="wind_speed_label">Wind Speed</string>
+    <string name="wind_direction_label">Wind Direction</string>
+    <string name="clouds_label">Clouds</string>
+
+    <!-- Detail weather forecast units -->
+    <string name="atmospheric_pressure_units">hPa</string>
+    <string name="humidity_units">%</string>
+    <string name="wind_speed_units">m/h</string>
+    <string name="wind_direction_units">degrees</string>
+    <string name="clouds_units">%</string>
+
+</resources>
