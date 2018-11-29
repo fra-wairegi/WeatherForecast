@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;

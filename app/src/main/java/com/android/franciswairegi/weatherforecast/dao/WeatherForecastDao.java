@@ -1,6 +1,6 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.dao;
 
-import android.os.Parcelable;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastItem;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.ColumnInfo;

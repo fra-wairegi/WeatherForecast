@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

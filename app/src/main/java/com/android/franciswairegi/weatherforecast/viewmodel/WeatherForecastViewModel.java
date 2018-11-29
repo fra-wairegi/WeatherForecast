@@ -1,10 +1,14 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.viewmodel;
 
 import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import android.util.Log;
+
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastItem;
+import com.android.franciswairegi.weatherforecast.roomrepository.WeatherForecastRepository;
 
 import java.util.List;
 
@@ -17,7 +21,7 @@ public class WeatherForecastViewModel extends AndroidViewModel {
     public WeatherForecastViewModel(Application application){
         super(application);
         Log.i(TAG, "TESTING1 Inside WeatherForecastViewModel constructor");
-        mWeatherForecastRepository = new WeatherForecastRepository(application);
+        mWeatherForecastRepository = WeatherForecastRepository.newInstance(application);
     }
 
     public void insert(String cityId){
@@ -29,7 +33,7 @@ public class WeatherForecastViewModel extends AndroidViewModel {
     }*/
 
     // Wrapper to get Weather Forecast for city
-    LiveData<List<WeatherForecastDao.WeatherForecastItemCity>> getWeatherForecastItemsByCity(String cityId){
+    public LiveData<List<WeatherForecastDao.WeatherForecastItemCity>> getWeatherForecastItemsByCity(String cityId){
         Log.i(TAG,"TESTING1 in getWeatherForecastItemsByCity cityId " + cityId);
     /*    Log.i(TAG,"TESTING1 in getWeatherForecastItemsByCity mWeatherForecastRepository." +
                 "getWeatherForecastItemsbyCity(cityId).getValue().size() " +
@@ -37,7 +41,7 @@ public class WeatherForecastViewModel extends AndroidViewModel {
         return mWeatherForecastRepository.getWeatherForecastItemsbyCity(cityId);
     }
 
-    LiveData<WeatherForecastDao.WeatherForecastItemCity> getWeatherForecastByForecastId(String forecastId) {
+    public LiveData<WeatherForecastDao.WeatherForecastItemCity> getWeatherForecastByForecastId(String forecastId) {
         Log.i(TAG, "TESTING1 in getWeatherForecastByForecastId cityId " + forecastId);
     /*    Log.i(TAG,"TESTING1 in getWeatherForecastItemsByCity mWeatherForecastRepository." +
                 "getWeatherForecastItemsbyCity(cityId).getValue().size() " +

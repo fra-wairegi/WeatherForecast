@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.fragment;
 
 import android.app.Activity;
 
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,10 +22,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.viewmodel.WeatherForecastViewModel;
+import com.android.franciswairegi.weatherforecast.activity.WeatherForecastCityListActivity;
+import com.android.franciswairegi.weatherforecast.activity.WeatherForecastDetailPagerActivity;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastData;
+import com.android.franciswairegi.weatherforecast.utils.RecyclerViewItemDecorator;
+import com.android.franciswairegi.weatherforecast.utils.SectionOrRow;
+import com.android.franciswairegi.weatherforecast.utils.Utility;
+import com.android.franciswairegi.weatherforecast.utils.WeatherForecastDataFormatter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -134,8 +143,6 @@ public class WeatherForecastFragment extends Fragment {
         mToggleButton = (ToggleButton) temperatureUnitToggle.getActionView();
 
         //mToggleButton.setText(R.string.degrees_fahrenheit);
-/*
-// Commented on Fri Nov 2 as it is causing some runtime error !!!!!
        mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -148,7 +155,7 @@ public class WeatherForecastFragment extends Fragment {
                 }
 
             }
-        });*/
+        });
 
        // MenuItem searchCity = menu.findItem(R.id.menu_city_search);
 /*        final SearchView searchView = (SearchView) searchCity.getActionView();

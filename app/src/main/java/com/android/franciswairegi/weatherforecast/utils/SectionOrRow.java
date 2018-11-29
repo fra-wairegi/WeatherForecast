@@ -1,8 +1,6 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.utils;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
 
 public class SectionOrRow {
 

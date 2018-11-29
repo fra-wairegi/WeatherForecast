@@ -1,15 +1,19 @@
 
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.activity;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastItem;
+import com.android.franciswairegi.weatherforecast.viewmodel.WeatherForecastViewModel;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.fragment.WeatherForecastDetailFragment;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

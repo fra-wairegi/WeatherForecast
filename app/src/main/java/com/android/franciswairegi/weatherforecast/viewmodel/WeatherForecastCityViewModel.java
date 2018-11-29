@@ -1,6 +1,10 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.viewmodel;
 
 import android.app.Application;
+
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastCityItem;
+import com.android.franciswairegi.weatherforecast.roomrepository.WeatherForecastCityRepository;
+
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
@@ -14,12 +18,12 @@ public class WeatherForecastCityViewModel extends AndroidViewModel {
 
     public WeatherForecastCityViewModel(Application application){
         super(application);
-        mWeatherCityRepository = new WeatherForecastCityRepository(application);
+        mWeatherCityRepository = WeatherForecastCityRepository.newInstance(application);
         mAllCities = mWeatherCityRepository.getAllCities();
         //mCities = mWeatherCityRepository.getCities();
     }
 
-    LiveData<List<WeatherForecastCityItem>> getAllCities(){
+    public LiveData<List<WeatherForecastCityItem>> getAllCities(){
         return mAllCities;
     }
 

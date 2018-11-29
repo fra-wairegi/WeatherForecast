@@ -1,9 +1,14 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Log;
+
+import com.android.franciswairegi.weatherforecast.BuildConfig;
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,9 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 import java.util.UUID;
 

@@ -1,15 +1,14 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.activity;
 
-import android.content.Context;
-import android.content.Intent;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
+
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.fragment.WeatherForecastFragment;
 
 public class WeatherForecastMainActivity extends AppCompatActivity {
 

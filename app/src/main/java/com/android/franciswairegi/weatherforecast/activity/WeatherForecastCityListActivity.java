@@ -1,9 +1,11 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.activity;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.fragment.WeatherForecastCityListFragment;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.ActionBar;

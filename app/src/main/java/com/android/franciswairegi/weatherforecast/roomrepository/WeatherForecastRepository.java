@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.roomrepository;
 
 import android.app.Application;
 import androidx.lifecycle.LiveData;
@@ -6,6 +6,11 @@ import androidx.lifecycle.LiveData;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.android.franciswairegi.weatherforecast.roomdatabase.WeatherForecastRoomDatabase;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastItem;
+import com.android.franciswairegi.weatherforecast.utils.Utility;
 
 import java.util.List;
 
@@ -27,15 +32,19 @@ public class WeatherForecastRepository {
         mWeatherForecastDao = db.weatherForecastDao();
     }
 
+    public static WeatherForecastRepository newInstance(Application application){
+        return new WeatherForecastRepository(application);
+    }
+
     // Wrapper for city Items
-    LiveData<List<WeatherForecastDao.WeatherForecastItemCity>> getWeatherForecastItemsbyCity(String cityId){
+    public LiveData<List<WeatherForecastDao.WeatherForecastItemCity>> getWeatherForecastItemsbyCity(String cityId){
         Log.i(TAG,"TESTING1 in getWeatherForecastItemsbyCity cityId " + cityId);
         //mWeatherForecastCityItem = mWeatherForecastDao.getCityByCityId(cityId);
         return mWeatherForecastDao.getWeatherForecastByCityId(cityId);
 
     }
 
-    LiveData<WeatherForecastDao.WeatherForecastItemCity> getWeatherForecastByForecastId(String forecastId){
+    public LiveData<WeatherForecastDao.WeatherForecastItemCity> getWeatherForecastByForecastId(String forecastId){
         Log.i(TAG,"TESTING1 in getWeatherForecastByForecastId forecastId " + forecastId);
         //mWeatherForecastCityItem = mWeatherForecastDao.getCityByCityId(cityId);
         return mWeatherForecastDao.getWeatherForecastByForecastId(forecastId);
@@ -49,7 +58,7 @@ public class WeatherForecastRepository {
 
     }*/
 
-    LiveData<List<WeatherForecastItem>> getAllWeatherForecast(){
+    public LiveData<List<WeatherForecastItem>> getAllWeatherForecast(){
         return mWeatherForecastDao.getAllWeatherForecast();
 
     }

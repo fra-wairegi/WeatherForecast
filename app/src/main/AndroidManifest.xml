@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".WeatherForecastMainActivity">
+            android:name=".activity.WeatherForecastMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".WeatherForecastCityListActivity"
-            android:parentActivityName=".WeatherForecastMainActivity">
+            android:name=".activity.WeatherForecastCityListActivity"
+            android:parentActivityName=".activity.WeatherForecastMainActivity">
         </activity>
         <activity
-            android:name=".WeatherForecastDetailPagerActivity"
-            android:parentActivityName=".WeatherForecastMainActivity">
+            android:name=".activity.WeatherForecastDetailPagerActivity"
+            android:parentActivityName=".activity.WeatherForecastMainActivity">
         </activity>
     </application>
 

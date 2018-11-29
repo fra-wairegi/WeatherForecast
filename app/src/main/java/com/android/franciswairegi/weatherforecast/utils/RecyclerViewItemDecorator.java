@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+
+import com.android.franciswairegi.weatherforecast.R;
 
 public class RecyclerViewItemDecorator extends RecyclerView.ItemDecoration {
 

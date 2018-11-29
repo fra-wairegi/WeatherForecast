@@ -1,6 +1,8 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.model;
 
-import java.io.Serializable;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.utils.SectionOrRow;
+
 import java.util.ArrayList;
 import java.util.List;
 

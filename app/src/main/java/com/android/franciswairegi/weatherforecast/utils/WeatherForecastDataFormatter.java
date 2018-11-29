@@ -1,7 +1,13 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.utils;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastData;
+import com.android.franciswairegi.weatherforecast.utils.SectionOrRow;
+import com.android.franciswairegi.weatherforecast.utils.Utility;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

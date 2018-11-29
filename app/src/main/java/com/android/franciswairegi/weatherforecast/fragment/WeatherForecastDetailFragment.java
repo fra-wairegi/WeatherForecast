@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.fragment;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.provider.ContactsContract;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,10 +17,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.viewmodel.WeatherForecastViewModel;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.utils.Utility;
 import com.squareup.picasso.Picasso;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 public  class WeatherForecastDetailFragment extends Fragment {
 

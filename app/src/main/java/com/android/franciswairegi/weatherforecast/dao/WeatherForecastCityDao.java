@@ -1,4 +1,6 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.dao;
+
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastCityItem;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

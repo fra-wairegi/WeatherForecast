@@ -1,4 +1,4 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.roomdatabase;
 
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.room.Database;
@@ -6,25 +6,25 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import android.util.Log;
+
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastCityDao;
+import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastCityItem;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastItem;
+import com.android.franciswairegi.weatherforecast.utils.QueryCityPreferences;
+import com.android.franciswairegi.weatherforecast.utils.Utility;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Database(entities = {WeatherForecastCityItem.class, WeatherForecastItem.class}, version = 1)
 public abstract class WeatherForecastRoomDatabase extends RoomDatabase {
@@ -41,7 +41,7 @@ public abstract class WeatherForecastRoomDatabase extends RoomDatabase {
     private static QueryCityPreferences mQueryCityPreferences;
 
 
-    static WeatherForecastRoomDatabase getDatabase(final Context context) {
+    public static WeatherForecastRoomDatabase getDatabase(final Context context) {
 
 
         mContext = context;

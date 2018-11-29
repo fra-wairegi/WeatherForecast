@@ -1,10 +1,7 @@
-package com.android.franciswairegi.weatherforecast;
+package com.android.franciswairegi.weatherforecast.fragment;
 
 import android.app.Activity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NavUtils;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -27,6 +24,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.franciswairegi.weatherforecast.R;
+import com.android.franciswairegi.weatherforecast.viewmodel.WeatherForecastCityViewModel;
+import com.android.franciswairegi.weatherforecast.model.WeatherForecastCityItem;
+import com.android.franciswairegi.weatherforecast.utils.QueryCityPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
