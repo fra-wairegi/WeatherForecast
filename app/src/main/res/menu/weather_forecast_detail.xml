@@ -9,9 +9,11 @@
         app:showAsAction="always" />-->
 
     <item
-        android:id="@+id/app_bar_switch"
+        android:id="@+id/app_bar_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:title="Switch"
-        app:actionLayout="@layout/switch_item"
+        app:actionLayout="@layout/toggle_item"
         app:showAsAction="always" />
 
 </menu>

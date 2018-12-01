@@ -31,8 +31,8 @@ public class Utility {
 
     private static final String TAG = Utility.class.getSimpleName();
 
-    public static final String DEFAULT_CITY_ID = "5358705"; //Testing Huntington Beach
-                                                            //To be set to device's current location
+    public static final String FAHRENHEIT = "f";
+    public static final String CELCIUS = "c";
 
     public static byte[] getBytes(InputStream inputStream) {
 
@@ -181,8 +181,8 @@ public class Utility {
         return iconUrl;
     }
 
-    public void getWeatherForecastItems(
-            String cityId, WeatherForecastDao weatherForecastDao, Context context){
+    public void getWeatherForecastItems(String cityId,
+            WeatherForecastDao weatherForecastDao, Context context){
 
         Resources resources = context.getResources();
 

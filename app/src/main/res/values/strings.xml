@@ -13,14 +13,17 @@
     <!-- City and Country subtitle -->
     <string name="subtitle">%1$s </string>
     <string name="search_city_hint">Find your city...</string>
-    <string name="cityID_default_value">5358705</string>
+
+    <!--Default City: Huntington Beach, CA
+        To be set to device's current location -->
+    <string name="city_id_default_value">5358705</string>
 
 
+    <!-- Temperature Strings -->
     <string name="degrees_celcius">%1$s \u2103</string>
     <string name="degrees_fahrenheit">%1$s \u2109</string>
     <string name="temperature_high_low_celcius">%1$s \u2103 | %2$s \u2103</string>
     <string name="temperature_high_low_fahrenheit">%1$s \u2109 | %2$s \u2109</string>
-
     <string name="celcius">\u2103</string>
     <string name="fahrenheit">\u2109</string>
 

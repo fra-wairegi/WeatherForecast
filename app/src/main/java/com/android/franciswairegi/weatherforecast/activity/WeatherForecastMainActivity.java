@@ -12,43 +12,26 @@ import com.android.franciswairegi.weatherforecast.fragment.WeatherForecastFragme
 
 public class WeatherForecastMainActivity extends AppCompatActivity {
 
-    public static final String TAG = "WeatherMainActivity";
+    /**
+     * In this WeatherForecast app, 5 day weather forecast is listed in 3 hour intervals
+     * The data is obtained from  {@link https://openweathermap.org/forecast5} API.
+     */
 
+    public static final String TAG = WeatherForecastMainActivity.class.getSimpleName();
 
-/*    public static final String EXTRA_CITY_ID =
-            "com.android.franciswairegi.weatherforecast.city_id";
-
-    private String mCityId;*/
-
-    // Not Used
-/*        public static Intent newIntent(Context packageContext, String cityID) {
-        Intent intent = new Intent(packageContext, WeatherForecastMainActivity.class);
-        Log.i(TAG, "CityId in newIntent " + cityID);
-        intent.putExtra(EXTRA_CITY_ID, cityID);
-        return intent;
-    }*/
-
-    @Override
+/*    @Override
     protected void onPause() {
         super.onPause();
         Log.i(TAG, "TESTING1 on Pause() ");
 
     }
 
-/*    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.i(TAG, "on Activity onActivityResult ");
-        Log.i(TAG, "data intent " +
-                data.getIntExtra(WeatherForecastCityListFragment.EXTRA_CITY_ID,0));
-
-    }*/
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.i(TAG, "TESTING1 on Activity onResume() ");
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +40,6 @@ public class WeatherForecastMainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Log.i(TAG, "TESTING1 onCreateCalled");
-
- /*       String cityID = getIntent().getStringExtra(EXTRA_CITY_ID);
-
-        if (cityID == null) {
-            mCityId = "5358705"; // Default, Huntington beach. To be changed to current location
-        } else {
-            mCityId = cityID; // CityId selected from a list of cities.
-        }
-
-        Log.i(TAG, "cityID " + cityID);
-        //mCityId = "5358705";*/
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
@@ -82,7 +52,6 @@ public class WeatherForecastMainActivity extends AppCompatActivity {
         if(fragment == null) {
             Log.i(TAG, "fragment == null ");
             fm.beginTransaction()
-                    //.add(R.id.fragment_container, WeatherForecastFragment.newInstance(mCityId))
                     .add(R.id.fragment_container, WeatherForecastFragment.newInstance())
                     .commit();
         }

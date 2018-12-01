@@ -14,14 +14,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.android.franciswairegi.weatherforecast.R;
 import com.android.franciswairegi.weatherforecast.viewmodel.WeatherForecastViewModel;
 import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
 import com.android.franciswairegi.weatherforecast.utils.Utility;
 import com.squareup.picasso.Picasso;
+
+import static com.android.franciswairegi.weatherforecast.utils.Utility.CELCIUS;
+import static com.android.franciswairegi.weatherforecast.utils.Utility.FAHRENHEIT;
 
 public  class WeatherForecastDetailFragment extends Fragment {
 
@@ -33,7 +38,8 @@ public  class WeatherForecastDetailFragment extends Fragment {
     private WeatherForecastDao.WeatherForecastItemCity mWeatherForecastItemByForecastId;
 
     private TextView mDate, mTime, mWeatherDescription, mWeatherMain, mPressure, mPressureLabel;
-    private TextView mTemperature, mTemperatureHighLow, mTemperatureHighLowLabel;
+    private TextView mTemperature, mTemperatureHighLow, mTemperatureHighLowLabel,
+            mTextViewTemperatureUnit;
     private TextView mHumidity, mHumidityLabel, mWindSpeed, mWindSpeedLabel;
     private TextView mWindDirection, mWindDirectionLabel, mClouds, mCloudsLabel;
     private ImageView mWeatherIcon;
@@ -110,6 +116,7 @@ public  class WeatherForecastDetailFragment extends Fragment {
                     mTemperature.setText(
                             Integer.toString(weatherForecastItemByForecastId.weatherForecastItem.
                             getTemperature().intValue()));
+                    mTextViewTemperatureUnit.setText(R.string.fahrenheit);
                     String temperatureHigh = Integer.toString(
                                                         weatherForecastItemByForecastId.
                                                         weatherForecastItem.
@@ -191,6 +198,54 @@ public  class WeatherForecastDetailFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.weather_forecast_detail, menu);
+
+        MenuItem temperatureUnitToggle = menu.findItem(R.id.app_bar_toggle);
+
+        ToggleButton toggleButton = (ToggleButton) temperatureUnitToggle.getActionView();
+
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    String temperatureFahrenheit =
+                            Integer.toString(mWeatherForecastItemByForecastId.weatherForecastItem.
+                                    getTemperature().intValue());
+                    mTemperature.setText(temperatureFahrenheit);
+                    mTextViewTemperatureUnit.setText(R.string.fahrenheit);
+                    String temperatureHighFahrenheit = Integer.toString(
+                            mWeatherForecastItemByForecastId.
+                                    weatherForecastItem.
+                                    getTemperatureHigh().intValue());
+                    String temperatureLowFahrenheit = Integer.toString(
+                            mWeatherForecastItemByForecastId.
+                                    weatherForecastItem.
+                                    getTemperatureLow().intValue());
+                    String temparatureHighLowStr = getString(
+                            R.string.temperature_high_low_fahrenheit,
+                            temperatureHighFahrenheit,temperatureLowFahrenheit);
+                    mTemperatureHighLow.setText(temparatureHighLowStr);
+
+                } else {
+                    String temperatureCelcius =
+                            Integer.toString(mWeatherForecastItemByForecastId.
+                                    getTemperatureCelcius().intValue());
+                    mTemperature.setText(temperatureCelcius);
+                    mTextViewTemperatureUnit.setText(R.string.celcius);
+                    String temperatureHighCelcius = Integer.toString(
+                            mWeatherForecastItemByForecastId.
+                                    getTemperatureHighCelcius().intValue());
+                    String temperatureLowCelcius = Integer.toString(
+                            mWeatherForecastItemByForecastId.
+                                    getTemperatureLowCelcius().intValue());
+                    String temparatureHighLowStr = getString(
+                            R.string.temperature_high_low_celcius,
+                            temperatureHighCelcius,temperatureLowCelcius);
+                    mTemperatureHighLow.setText(temparatureHighLowStr);
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -217,13 +272,10 @@ public  class WeatherForecastDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //mDayOfTheWeek = view.findViewById(R.id.day_of_the_week);
-        //mDayOfTheWeek.setText("Today");
-        Log.i(TAG, "TESTING2 onViewCreated ");
         mDate = view.findViewById(R.id.date);
         mTime = view.findViewById(R.id.time);
-        //mTime.setText(mWeatherForecastItem.getTimeForecasted());
         mTemperature = view.findViewById(R.id.temperature);
+        mTextViewTemperatureUnit = view.findViewById(R.id.temperature_unit);
         mTemperatureHighLow = view.findViewById(R.id.temperature_high_low);
 
         mWeatherIcon = view.findViewById(R.id.detail_weather_icon);

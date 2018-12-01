@@ -4,10 +4,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
+
 import android.util.Log;
 
 import com.android.franciswairegi.weatherforecast.R;
@@ -53,7 +56,7 @@ public abstract class WeatherForecastRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             WeatherForecastRoomDatabase.class, "weather_forecast.db")
                             .addCallback(sRoomDatabaseCallback) // Populates database whenever the
-                                                                  // app is started
+                            // app is started
                             //.allowMainThreadQueries()
                             .build();
                 }
@@ -90,18 +93,6 @@ public abstract class WeatherForecastRoomDatabase extends RoomDatabase {
 
             populateCities();
 
-            Log.i(TAG, "Just before  utility.getWeatherForecastItems(Utility.DEFAULT_CITY_ID " +
-                    Utility.DEFAULT_CITY_ID);
-            //mPopulateDbAsyncDao.deleteAll();
-
-            Log.i(TAG, "mPopulateDbAsyncDao.getCount(Utility.DEFAULT_CITY_ID) " +
-                    mPopulateDbAsyncDao.getCount(Utility.DEFAULT_CITY_ID));
-
-/*            if (mPopulateDbAsyncDao.getCount(Utility.DEFAULT_CITY_ID) == 0) {
-                populateWeatherForecast(utility.getWeatherForecastItems(Utility.DEFAULT_CITY_ID));
-            }*/
-
-
             // Count of records whose data is a forecast i.e future date
             // This count is used to delete stale data from the database.
             // The openWeather API returns 40 records for every fresh call.
@@ -113,38 +104,30 @@ public abstract class WeatherForecastRoomDatabase extends RoomDatabase {
             if (mPopulateDbAsyncDao.getValidForecastCount(Utility.DEFAULT_CITY_ID) < 37) {
                 mPopulateDbAsyncDao.deleteAll();*/
 
-                // Checking the count and inserting
-                utility.getWeatherForecastItems(
-                        Utility.DEFAULT_CITY_ID,
-                        mPopulateDbAsyncDao,
-                        mContext);
+            // Checking the count and inserting
+            String defaultCityId = mContext.getString(R.string.city_id_default_value);
+            utility.getWeatherForecastItems(
+                    defaultCityId,
+                    mPopulateDbAsyncDao,
+                    mContext);
 
-                // Commented on Oct 20. insertion being done by the utility class.
+            // Commented on Oct 20. insertion being done by the utility class.
              /*   populateWeatherForecast(utility.getWeatherForecastItems(
                         Utility.DEFAULT_CITY_ID,
                         mPopulateDbAsyncDao,
                         mContext));*/
 
-/*            PopulateWeatherForecast populateWeatherForecast =
-                    new PopulateWeatherForecast(mContext);
-
-            Log.i(TAG, "QueryCityPreferences.getStoredCityId(mContext)" +
-                    QueryCityPreferences.getStoredCityId(mContext));
-
-            populateWeatherForecast.insertWeatherForecastDataToDb(
-                    QueryCityPreferences.getStoredCityId(mContext));*/
-
             return null;
         }
 
-        private void populateCities(){
+        private void populateCities() {
 
             List<WeatherForecastCityItem> weatherForecastCityItems = new ArrayList<>();
 
-            Log.i(TAG,"TESTING1 Count in database is " + mPopulateDbAsyncCityDao.getCount());
+            Log.i(TAG, "TESTING1 Count in database is " + mPopulateDbAsyncCityDao.getCount());
 
             //mPopulateDbAsyncCityDao.deleteAll();
-            if(mPopulateDbAsyncCityDao.getCount() == 0) {
+            if (mPopulateDbAsyncCityDao.getCount() == 0) {
 
                 try {
 
@@ -195,7 +178,7 @@ public abstract class WeatherForecastRoomDatabase extends RoomDatabase {
                     return null;*/
                 } catch (JSONException jsone) {
                     Log.e(TAG, "Error with JSON Array ", jsone);
-                    }
+                }
             }
         }
 
