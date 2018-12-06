@@ -18,9 +18,6 @@ public interface WeatherForecastCityDao {
     @Query("SELECT COUNT(*) FROM cities")
     Integer getCount();
 
-    @Query("DELETE FROM cities")
-    void deleteAll();
-
     @Insert
     void insertList(List<WeatherForecastCityItem> weatherForecastCityItems);
 

@@ -29,16 +29,19 @@ import static com.android.franciswairegi.weatherforecast.utils.Utility.CELCIUS;
 import static com.android.franciswairegi.weatherforecast.utils.Utility.FAHRENHEIT;
 
 public  class WeatherForecastDetailFragment extends Fragment {
-
-    private static final String TAG = WeatherForecastDetailFragment.class.getSimpleName();
+    
+    /**
+     * TAG used during debugging
+     *  private static final String TAG = WeatherForecastDetailFragment.class.getSimpleName();
+     **/
     private static final String ARG_WEATHER_FORECAST_ID = "weather_forecast_id";
     private String mForecastId;
 
     private WeatherForecastViewModel mWeatherForecastViewModel;
     private WeatherForecastDao.WeatherForecastItemCity mWeatherForecastItemByForecastId;
 
-    private TextView mDate, mTime, mWeatherDescription, mWeatherMain, mPressure, mPressureLabel;
-    private TextView mTemperature, mTemperatureHighLow, mTemperatureHighLowLabel,
+    private TextView mDate, mTime, mWeatherDescription, mPressure, mPressureLabel;
+    private TextView mTemperature, mTemperatureHighLow,
             mTextViewTemperatureUnit;
     private TextView mHumidity, mHumidityLabel, mWindSpeed, mWindSpeedLabel;
     private TextView mWindDirection, mWindDirectionLabel, mClouds, mCloudsLabel;
@@ -49,7 +52,6 @@ public  class WeatherForecastDetailFragment extends Fragment {
 
         Bundle arg = new Bundle();
         arg.putString(ARG_WEATHER_FORECAST_ID, forecastId);
-        //arg.putParcelable(ARG_WEATHER_FORECAST_ITEM,weatherForecastItem);
 
         WeatherForecastDetailFragment weatherForecastDetailFragment =
                 new WeatherForecastDetailFragment();
@@ -62,28 +64,16 @@ public  class WeatherForecastDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mForecastId = getArguments().getString(ARG_WEATHER_FORECAST_ID);
-        Log.i(TAG, "mForecastId " + mForecastId);
 
         mWeatherForecastViewModel = ViewModelProviders.of(this)
                 .get(WeatherForecastViewModel.class);
 
-        Log.i(TAG, "TESTING2 after ViewModelProviders.of ");
-
         mWeatherForecastViewModel.getWeatherForecastByForecastId(mForecastId).observe(
-            //mWeatherForecastViewModel.getAllWeatherForecast().observe(
             this,
             new Observer<WeatherForecastDao.WeatherForecastItemCity>() {
                 @Override
                 public void onChanged(@Nullable WeatherForecastDao.WeatherForecastItemCity
                                               weatherForecastItemByForecastId) {
-
-                    Log.i(TAG, "TESTING2 mWeatherForecastViewModel observe ");
-
-                    Log.i(TAG, "weatherForecastItemByForecastId.getCountryName()"
-                            + weatherForecastItemByForecastId.getCountryName());
-
-                    Log.i(TAG, "weatherForecastItemByForecastId.getCountryName()"
-                            + weatherForecastItemByForecastId.weatherForecastItem.getTemperature());
 
                     mWeatherForecastItemByForecastId = weatherForecastItemByForecastId;
 
@@ -91,13 +81,6 @@ public  class WeatherForecastDetailFragment extends Fragment {
                             weatherForecastItem.getDateForecasted();
 
                     String timezone = weatherForecastItemByForecastId.getCityTimezone();
-
-                    Log.i(TAG, "longDate in Detail " + longDate);
-                    Log.i(TAG, "mForecastId in Detail " + mForecastId);
-                    Log.i(TAG, "Displayed data in Detail " +
-                    Utility.getDateForecastStr(getActivity(),longDate,weatherForecastItemByForecastId
-                    .getCityTimezone()));
-
 
                     String dateForecastStr = Utility.getDateForecastStr(
                                                 getActivity(),
@@ -109,8 +92,6 @@ public  class WeatherForecastDetailFragment extends Fragment {
                                                 longDate,
                                                 timezone);
 
-                    Log.i(TAG, "weatherForecastItemByForecastId.getCountryName()"
-                            + mWeatherForecastItemByForecastId.weatherForecastItem.getCityName());
                     mDate.setText(dateForecastStr);
                     mTime.setText(timeForecastedStr);
                     mTemperature.setText(
@@ -253,7 +234,6 @@ public  class WeatherForecastDetailFragment extends Fragment {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                //NavUtils.navigateUpFromSameTask(getActivity());
                 getActivity().onBackPressed();
                 return true;
         }
@@ -261,10 +241,10 @@ public  class WeatherForecastDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "TESTING2 onCreateView ");
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_detail_forecast, container, false);
-        //return inflater.inflate(R.layout.fragment_detail_forecastv2, container, false);
 
     }
 

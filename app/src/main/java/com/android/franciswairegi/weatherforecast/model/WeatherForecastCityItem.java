@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 @Entity(tableName = "cities")
 public class WeatherForecastCityItem implements Parcelable {
 
-    public static final String EXTRA_CITY_LIST = "weather_forecast_city_item_array_list";
-
     public WeatherForecastCityItem(){
     }
 
@@ -41,11 +39,7 @@ public class WeatherForecastCityItem implements Parcelable {
     }
 
     public String getCityName() {
-        // Handle the "," for cities without state
-        //if (mCityState.isEmpty()){
             return mCityName;
-       // }
-        //return mCityName + ", " + mCityState;
     }
 
     public String getCityStateName() {
@@ -103,7 +97,8 @@ public class WeatherForecastCityItem implements Parcelable {
         return 0;
     }
 
-    public static final Parcelable.Creator<WeatherForecastCityItem> CREATOR = new Parcelable.Creator<WeatherForecastCityItem>() {
+    public static final Parcelable.Creator<WeatherForecastCityItem> CREATOR =
+            new Parcelable.Creator<WeatherForecastCityItem>() {
         public WeatherForecastCityItem createFromParcel(Parcel in) {
             return new WeatherForecastCityItem(in);
         }

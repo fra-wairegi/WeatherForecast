@@ -17,18 +17,16 @@ public interface WeatherForecastDao {
     @Insert
     void insertList(List<WeatherForecastItem> weatherForecastItems);
 
-    @Query("SELECT COUNT(*) FROM weather_forecast WHERE weather_forecast.city_id = :cityId")
-        //@Query("SELECT COUNT(*) FROM weather_forecast WHERE city_name = 'Huntington Beach'")
-    Integer getCount(String cityId);
-
+    /**
+     * Count of records whose data is a forecast i.e future date
+     * This count is used to delete stale data from the database.
+     * If the count is less than 37 then the data is stale. It means
+     * the data was updated at least 6 hours ago.
+     * */
     @Query("SELECT COUNT(*) " +
             "FROM weather_forecast " +
             "WHERE weather_forecast.city_id = :cityId " +
             "AND dt > (SELECT strftime('%s','now'))")
-        // Count of records whose data is a forecast i.e future date
-        // This count is used to delete stale data from the database.
-        // If the count is less than 37 then the data is stale. It means
-        // the data was updated at least 6 hours ago.
     Integer getValidForecastCount(String cityId);
 
     @Query("DELETE FROM weather_forecast" )
@@ -38,10 +36,6 @@ public interface WeatherForecastDao {
             "WHERE city_id = :cityId" )
     void deleteCity(String cityId);
 
-/*    @Query("SELECT weather_forecast.*" +
-            "FROM weather_forecast " +
-            "WHERE weather_forecast.city_id == :cityId ")
-    LiveData<List<WeatherForecastItem>> getWeatherForecastByCityId(String cityId);*/
 
     @Query("SELECT weather_forecast.*," +
             "cities.state_code, " +
@@ -55,7 +49,6 @@ public interface WeatherForecastDao {
             "ON weather_forecast.city_id = cities.city_id " +
             "WHERE dt > (SELECT strftime('%s','now')) " +
             "AND weather_forecast.city_id == :cityId ")
-        //LiveData<List<WeatherForecastItem>> getWeatherForecastByCityId(String cityId);
     LiveData<List<WeatherForecastItemCity>> getWeatherForecastByCityId(String cityId);
 
     @Query("SELECT weather_forecast.*," +
@@ -70,14 +63,15 @@ public interface WeatherForecastDao {
             "ON weather_forecast.city_id = cities.city_id " +
             "WHERE dt > (SELECT strftime('%s','now')) " +
             "AND weather_forecast.forecast_id == :forecastId ")
-        //LiveData<List<WeatherForecastItem>> getWeatherForecastByCityId(String cityId);
     LiveData<WeatherForecastItemCity> getWeatherForecastByForecastId(String forecastId);
 
     class WeatherForecastItemCity  {
+        /**
+         * This class is used to add custom properties to the WeatherForecastItem model. This
+         * ensures that the database's WeatherForecastItem table entity is not altered.
+         */
         @Embedded
         public WeatherForecastItem weatherForecastItem = new WeatherForecastItem();
-        /*@Embedded(prefix = "city_")
-        public WeatherForecastCityItem weatherForecastCityItem;*/
         @ColumnInfo(name = "state_code")
         private String mCityState;
 
@@ -147,12 +141,6 @@ public interface WeatherForecastDao {
         }
     }
 
-/*    @Query("SELECT cities.*" +
-            "FROM cities " +
-            "WHERE cities.city_id == :cityId ")
-    WeatherForecastCityItem getCityByCityId(String cityId);*/
-
-    //@Query("SELECT * FROM weather_forecast")
     @Query("SELECT * FROM weather_forecast WHERE weather_forecast.city_id IS NOT NULL ")
     LiveData<List<WeatherForecastItem>> getAllWeatherForecast();
 

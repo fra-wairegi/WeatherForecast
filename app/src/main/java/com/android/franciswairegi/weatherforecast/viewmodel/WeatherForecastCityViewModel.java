@@ -14,21 +14,15 @@ public class WeatherForecastCityViewModel extends AndroidViewModel {
 
     private WeatherForecastCityRepository mWeatherCityRepository;
     private LiveData<List<WeatherForecastCityItem>> mAllCities; // Caches all cities
-    //private List<WeatherForecastCityItem> mCities; // Caches all cities
 
     public WeatherForecastCityViewModel(Application application){
         super(application);
         mWeatherCityRepository = WeatherForecastCityRepository.newInstance(application);
         mAllCities = mWeatherCityRepository.getAllCities();
-        //mCities = mWeatherCityRepository.getCities();
     }
 
     public LiveData<List<WeatherForecastCityItem>> getAllCities(){
         return mAllCities;
     }
-
-/*    List<WeatherForecastCityItem> getCities(){
-        return mCities;
-    }*/
 
 }

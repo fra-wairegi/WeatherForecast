@@ -25,7 +25,11 @@ import static com.android.franciswairegi.weatherforecast.utils.Utility.FAHRENHEI
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final String TAG = WeatherForecastAdapter.class.getSimpleName();
+    /**
+     * TAG used during debugging
+     * private static final String TAG = WeatherForecastAdapter.class.getSimpleName();
+     **/
+
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
@@ -61,7 +65,6 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(RecyclerView.ViewHolder weatherForecastHolder, int position) {
 
         final SectionOrRow item = mWeatherSectionOrRowItems.get(position);
-        //final SectionOrRow item = mWeatherForecastData.getSectionOrRowItems().get(position);
         if (!item.isRow()) {
             WeatherForecastHolderHeader weatherForecastHolderHeader =
                     (WeatherForecastHolderHeader) weatherForecastHolder;
@@ -77,8 +80,6 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
                     String forecastId = item.getRow().weatherForecastItem.getForecastId();
                     String cityId = item.getRow().weatherForecastItem.getCityId();
-                    Log.i(TAG, "item.getRow().getForecastId()" + forecastId);
-
 
                     Intent intent = WeatherForecastDetailPagerActivity.newIntent(mContext,
                             forecastId, cityId);
@@ -93,7 +94,6 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public int getItemViewType(int position) {
         super.getItemViewType(position);
-        //SectionOrRow item = mWeatherForecastData.getSectionOrRowItems().get(position);
         SectionOrRow item = mWeatherSectionOrRowItems.get(position);
 
         if (!item.isRow()) {

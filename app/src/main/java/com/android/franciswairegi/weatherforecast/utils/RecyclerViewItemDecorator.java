@@ -5,17 +5,14 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.android.franciswairegi.weatherforecast.R;
 
 public class RecyclerViewItemDecorator extends RecyclerView.ItemDecoration {
 
-    private static final String TAG = "RecyclerItemDecorator";
-
-    Context mContext;
-    Drawable mDivider;
+    private Context mContext;
+    private Drawable mDivider;
 
     /**
      * Constructor to initialise the context and drawable to display the dividers
@@ -28,13 +25,10 @@ public class RecyclerViewItemDecorator extends RecyclerView.ItemDecoration {
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        //int dividerLeft = (int)mContext.getResources().getDimension(R.dimen.list_left_margin);
         int dividerRight = parent.getWidth() - (int)mContext.getResources().getDimension(R.dimen.activity_horizontal_margin);
         int dividerLeft = parent.getPaddingLeft();
-        //int dividerRight = parent.getWidth() - parent.getPaddingRight();
 
         int childCount = parent.getChildCount();
-        Log.i(TAG, "ttttt getChildCount "+ parent.getChildCount());
         for (int i = 0; i < childCount - 1; i++) {
             View child = parent.getChildAt(i);
 

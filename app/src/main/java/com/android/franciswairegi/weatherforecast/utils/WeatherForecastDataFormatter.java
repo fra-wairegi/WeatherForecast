@@ -5,9 +5,6 @@ import android.util.Log;
 
 import com.android.franciswairegi.weatherforecast.R;
 import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
-import com.android.franciswairegi.weatherforecast.model.WeatherForecastData;
-import com.android.franciswairegi.weatherforecast.utils.SectionOrRow;
-import com.android.franciswairegi.weatherforecast.utils.Utility;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,69 +13,57 @@ import java.util.List;
 
 public class WeatherForecastDataFormatter {
 
-    private static final String TAG = "WeathForecastFormatter";
+    /**
+     * TAG used for debugging
+     * private static final String TAG = WeatherForecastDataFormatter.class.getSimpleName();
+     */
 
     private Context mContext;
-
 
     public WeatherForecastDataFormatter(Context context) {
         mContext = context;
     }
 
 
-    private String getStartDate(){
+    private String getStartDate() {
         String longDate = mContext.getString(R.string.start_date);
-
-    /*    SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat(
-                        mContext.getString(R.string.date_format));*/
 
         SimpleDateFormat simpleDateFormat =
                 new SimpleDateFormat(
                         mContext.getString(R.string.date_format));
 
-        return simpleDateFormat.format(new Date(Long.parseLong(longDate)*1000L));
+        return simpleDateFormat.format(new Date(Long.parseLong(longDate) * 1000L));
     }
 
-    //public WeatherForecastData formatRecyclerViewItems(List<WeatherForecastItem> weatherForecastItems) {
     public WeatherForecastData formatRecyclerViewItems(
             List<WeatherForecastDao.WeatherForecastItemCity> weatherForecastItems) {
-
-        Log.i(TAG, "Inside formatRecyclerViewItems " + weatherForecastItems.size());
 
         String currentItemDate = getStartDate();
         ArrayList<SectionOrRow> items = new ArrayList<>();
         WeatherForecastData weatherForecastData = new WeatherForecastData();
 
-       //weatherForecastData.setCity(weatherForecastItems.get(0).getCityName());
-       weatherForecastData.setCity(weatherForecastItems.get(0).weatherForecastItem.getCityName());
-       //weatherForecastData.setCountry(weatherForecastItems.get(0).getCountryCode());
-       weatherForecastData.setCountry(weatherForecastItems.get(0).weatherForecastItem.getCountryCode());
-       weatherForecastData.setStateCode(
-               weatherForecastItems.get(0).getCityState());
+        weatherForecastData.setCity(
+                weatherForecastItems.get(0).weatherForecastItem.getCityName());
+        weatherForecastData.setCountry(
+                weatherForecastItems.get(0).weatherForecastItem.getCountryCode());
+        weatherForecastData.setStateCode(
+                weatherForecastItems.get(0).getCityState());
 
-       // Obtain the city's timezone. It's the same for all records hence use get(0)
+        // Obtain the city's timezone. It's the same for all records hence use get(0)
         String timezone = weatherForecastItems.get(0).getCityTimezone();
 
 
         for (int i = 0; i < weatherForecastItems.size(); i++) {
-            //WeatherForecastItem weatherForecastItem = weatherForecastItems.get(i);
-            //WeatherForecastItem weatherForecastItem = weatherForecastItems.get(i).weatherForecastItem;
             WeatherForecastDao.WeatherForecastItemCity weatherForecastItem =
                     weatherForecastItems.get(i);
 
-
-            //WeatherForecastItem itemSection = new WeatherForecastItem();
             WeatherForecastDao.WeatherForecastItemCity itemSection =
                     new WeatherForecastDao.WeatherForecastItemCity();
-            //WeatherForecastItem itemRow = new WeatherForecastItem();
             WeatherForecastDao.WeatherForecastItemCity itemRow
                     = new WeatherForecastDao.WeatherForecastItemCity();
             SectionOrRow section = new SectionOrRow();
             SectionOrRow row = new SectionOrRow();
 
-            Log.i(TAG, "weatherForecastItem.weatherForecastItem.getForecastId " +
-                    weatherForecastItem.weatherForecastItem.getForecastId());
             itemRow.weatherForecastItem.
                     setForecastId(weatherForecastItem.weatherForecastItem.getForecastId());
             itemRow.weatherForecastItem.
@@ -95,7 +80,8 @@ public class WeatherForecastDataFormatter {
             itemRow.weatherForecastItem.
                     setWeatherMain(weatherForecastItem.weatherForecastItem.getWeatherMain());
             itemRow.weatherForecastItem.
-                    setWeatherDescription(weatherForecastItem.weatherForecastItem.getWeatherDescription());
+                    setWeatherDescription(weatherForecastItem.weatherForecastItem.
+                            getWeatherDescription());
 
             itemRow.weatherForecastItem.
                     setTemperature(weatherForecastItem.weatherForecastItem.getTemperature());
@@ -103,7 +89,8 @@ public class WeatherForecastDataFormatter {
             itemRow.weatherForecastItem.
                     setTemperatureLow(weatherForecastItem.weatherForecastItem.getTemperatureLow());
             itemRow.weatherForecastItem.
-                    setTemperatureHigh(weatherForecastItem.weatherForecastItem.getTemperatureHigh());
+                    setTemperatureHigh(weatherForecastItem.weatherForecastItem.
+                            getTemperatureHigh());
             itemRow.weatherForecastItem.
                     setPressure(weatherForecastItem.weatherForecastItem.getPressure());
             itemRow.weatherForecastItem.
@@ -121,7 +108,9 @@ public class WeatherForecastDataFormatter {
 
             // Ensure date is inserted only once
             String dateForecasted = Utility.getDateForecastStr(
-                    mContext,weatherForecastItem.weatherForecastItem.getDateForecasted(),timezone);
+                    mContext,
+                    weatherForecastItem.weatherForecastItem.getDateForecasted(),
+                    timezone);
 
             if (!currentItemDate.equals(dateForecasted)) {
                 section.createSection(itemSection);
@@ -131,14 +120,9 @@ public class WeatherForecastDataFormatter {
 
             row.createRow(itemRow);
             items.add(row);
-            //weatherForecastItems.add(itemRow);
         }
         weatherForecastData.setSectionOrRowItems(items);
 
-        Log.i(TAG, "End of formatRecyclerViewItems weatherForecastData.getSectionOrRowItems().size() " +
-                weatherForecastData.getSectionOrRowItems().size());
-        Log.i(TAG, "End of formatRecyclerViewItems weatherForecastData.getWeatherForecastItems().size() " +
-                weatherForecastData.getWeatherForecastItems().size());
-     return  weatherForecastData;
+        return weatherForecastData;
     }
 }

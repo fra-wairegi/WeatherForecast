@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,7 +28,7 @@ import com.android.franciswairegi.weatherforecast.adapter.WeatherForecastAdapter
 import com.android.franciswairegi.weatherforecast.viewmodel.WeatherForecastViewModel;
 import com.android.franciswairegi.weatherforecast.activity.WeatherForecastCityListActivity;
 import com.android.franciswairegi.weatherforecast.dao.WeatherForecastDao;
-import com.android.franciswairegi.weatherforecast.model.WeatherForecastData;
+import com.android.franciswairegi.weatherforecast.utils.WeatherForecastData;
 import com.android.franciswairegi.weatherforecast.utils.RecyclerViewItemDecorator;
 import com.android.franciswairegi.weatherforecast.utils.WeatherForecastDataFormatter;
 
@@ -66,6 +65,7 @@ public class WeatherForecastFragment extends Fragment {
 
         mToggleButton = new ToggleButton(getActivity());
 
+        // TODO: defaultCityId to use the devices current location
         String defaultCityId = getString(R.string.city_id_default_value);
         queryWeatherForecastItems(defaultCityId);
 
@@ -113,7 +113,6 @@ public class WeatherForecastFragment extends Fragment {
                 mWeatherForecastViewModel.insert(cityId);
                 queryWeatherForecastItems(cityId);
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                Log.i(TAG, "onActivityResult RESULT_CANCELED ");
             }
         }
     }
@@ -181,7 +180,6 @@ public class WeatherForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i(TAG, "Inside1 onCreateView");
         return inflater.inflate(R.layout.weather_forecast_recyclerview_fragment,
                 container, false);
     }
@@ -189,10 +187,6 @@ public class WeatherForecastFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        //queryWeatherForecastItems(mCityId);  * Commented on Oct 16
-        // * to retain scroll position on configuration
-        // * changes
 
         setSubtitle();
 

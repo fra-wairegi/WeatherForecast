@@ -7,6 +7,12 @@
     <string name="full_formatted_date">%1$s, %2$s</string>
     <string name="time_format">h:mm a</string>
 
+    <!--Room Database Name-->
+    <string name="database_name">weather_forecast.db</string>
+
+    <!--OpenWeather Forecast Base Uri-->
+    <string name="base_uri">http://api.openweathermap.org/data/2.5/forecast?</string>
+
     <!--Thursday, January 1, 1970 12:00:00 AM-->
     <string name="start_date">0000000000</string>
 
